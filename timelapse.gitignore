@@ -1,0 +1,29 @@
+#!/usr/bin/python
+import wiringpi2
+import time
+io=wiringpi2.GPIO(wiringpi2.GPIO.WPI_MODE_PINS)
+led=3
+rele=4
+pulsador1=5
+pulsador2=
+io.pinMode(led,io.OUTPUT)#Led
+io.pinMode(rele,io.OUTPUT)#Rele
+io.pinMode(pulsador1,io.INPUT)#Pulsador1
+
+contador=1
+buttonState = 0        
+lastButtonState = 0
+
+while (digitalRead(pulsador)) == 0 : #Mientras el pulsador esta a cero el programa queda parado hasta que le usuario lo indica
+	io.digitalWrite(led,io.HIGH)	
+io.digitalWrite(7,io.LOW)#Boton de verificacion. Cuando este activo termina la suma del modo de tiempo
+	buttonState =digitalRead(pulsador)
+	if (buttonState != lastButtonState) :
+		if (buttonState == HIGH) :
+		contador=contador+1
+while TRUE :
+	for i in range(contador):	
+		time.sleep(1)  
+	io.digitalWrite(rele,io.HIGH)#Activamos el rele
+	time.sleep(0.3) #Tiempo que necesita la camara para hacer la foto
+	io.digitalWrite(rele,io.LOW) #Apagamos el rele
